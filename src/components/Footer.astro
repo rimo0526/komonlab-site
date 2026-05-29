@@ -1,0 +1,40 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-ink-200 bg-ink-50">
+  <div class="container-wide grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="sm:col-span-2">
+      <p class="font-serif text-lg text-sumi">Komon Lab</p>
+      <p class="mt-2 max-w-md text-sm text-ink-500">
+        Free, printable kimono patterns generated from your measurements. Built in the open by one
+        person, for the English-speaking sewing community.
+      </p>
+    </div>
+
+    <nav aria-label="Tools and guides">
+      <p class="eyebrow">Make</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="/tool" class="text-ink-600 hover:text-sumi">Pattern tool</a></li>
+        <li><a href="/guides" class="text-ink-600 hover:text-sumi">Guides</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="About the project">
+      <p class="eyebrow">Project</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="/about" class="text-ink-600 hover:text-sumi">About</a></li>
+        <li><a href="/privacy" class="text-ink-600 hover:text-sumi">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-ink-200">
+    <div class="container-wide flex flex-col gap-2 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Komon Lab. Patterns released for personal sewing use.</p>
+      <p class="text-ink-400">
+        No tracking cookies. No email list. No paywall.
+      </p>
+    </div>
+  </div>
+</footer>
