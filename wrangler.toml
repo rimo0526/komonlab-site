@@ -1,0 +1,30 @@
+# Cloudflare Pages config for Komon Lab
+# - Project: komonlab
+# - Astro 4.x static build, output: dist/
+# - Custom domain (komonlab.com) is configured via the Cloudflare dashboard
+#   after the apex domain is acquired. Do NOT set it here until then.
+
+name = "komonlab"
+compatibility_date = "2026-05-29"
+pages_build_output_dir = "dist"
+
+# -------------------------------------------------------------------
+# Public (build-time) environment variables.
+# These are inlined into the static bundle. Treat them as PUBLIC.
+# Secret values MUST go via `wrangler pages secret put` instead,
+# or via the Cloudflare dashboard (Settings -> Environment variables).
+# -------------------------------------------------------------------
+[vars]
+PUBLIC_SITE_URL = "https://komonlab.pages.dev"
+# PUBLIC_UMAMI_WEBSITE_ID = ""     # set in dashboard once the Umami site is created
+# PUBLIC_UMAMI_SCRIPT_URL = "https://cloud.umami.is/script.js"
+
+# -------------------------------------------------------------------
+# Per-environment overrides.
+# `production` is what gets served at the production URL / custom domain.
+# Preview deployments (any non-prod branch) inherit `[vars]` above.
+# -------------------------------------------------------------------
+[env.production.vars]
+PUBLIC_SITE_URL = "https://komonlab.pages.dev"
+# After komonlab.com is connected, change to:
+# PUBLIC_SITE_URL = "https://komonlab.com"

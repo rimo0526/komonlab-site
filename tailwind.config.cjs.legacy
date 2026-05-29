@@ -1,0 +1,109 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte,md,mdx}'],
+  theme: {
+    extend: {
+      colors: {
+        // Primary — 藍 (ai indigo)
+        primary: {
+          50: '#EEF2F8',
+          100: '#D5DEEC',
+          200: '#A8BAD3',
+          300: '#7C95B9',
+          400: '#506FA0',
+          500: '#385580',
+          600: '#2A4670',
+          700: '#1F3A5F',
+          800: '#172E4A',
+          900: '#0E1F35',
+        },
+        // Secondary — 弁柄 (bengara)
+        secondary: {
+          50: '#FBEFEC',
+          100: '#F2D2CB',
+          200: '#E1A496',
+          300: '#CC7560',
+          400: '#B65240',
+          500: '#8C3A2A',
+          600: '#732F22',
+          700: '#59241A',
+          800: '#3F1A13',
+          900: '#26100B',
+        },
+        // Accent — 抹茶 (matcha)
+        accent: {
+          50: '#F1F4E7',
+          100: '#DDE5C2',
+          200: '#BCCB8A',
+          300: '#9CB055',
+          400: '#82983F',
+          500: '#6B7F3F',
+          600: '#566732',
+          700: '#414D26',
+          800: '#2C341A',
+          900: '#171B0E',
+        },
+        // Neutral — 暖色系 (warm)
+        neutral: {
+          0: '#FFFFFF',
+          50: '#FAF6EE',
+          100: '#F2EBDD',
+          200: '#E0D6BF',
+          300: '#C5B895',
+          400: '#9B8E6F',
+          500: '#6E624B',
+          600: '#544A38',
+          700: '#3A352A',
+          800: '#2A2620',
+          900: '#1A1715',
+        },
+        // Semantic
+        success: { 500: '#5B7B47' },
+        warning: { 500: '#B58A2A' },
+        error: { 500: '#A33B2E' },
+        info: { 500: '#3A6B8C' },
+      },
+      fontFamily: {
+        display: ['"Fraunces Variable"', 'Fraunces', 'Georgia', 'serif'],
+        body: ['"Inter Variable"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      fontSize: {
+        // Modular scale 1.250
+        xs: ['0.64rem', { lineHeight: '1.4' }],
+        sm: ['0.8rem', { lineHeight: '1.5' }],
+        base: ['1rem', { lineHeight: '1.65' }],
+        lg: ['1.25rem', { lineHeight: '1.55' }],
+        xl: ['1.563rem', { lineHeight: '1.45' }],
+        '2xl': ['1.953rem', { lineHeight: '1.35' }],
+        '3xl': ['2.441rem', { lineHeight: '1.25' }],
+        '4xl': ['3.052rem', { lineHeight: '1.15' }],
+        '5xl': ['3.815rem', { lineHeight: '1.1' }],
+      },
+      maxWidth: {
+        prose: '65ch',
+        container: '1200px',
+      },
+      borderRadius: {
+        none: '0',
+        sm: '2px',
+        DEFAULT: '4px',
+        md: '6px',
+        lg: '8px',
+        xl: '12px',
+        '2xl': '16px',
+      },
+      boxShadow: {
+        sm: '0 1px 2px 0 rgba(58, 53, 42, 0.05)',
+        DEFAULT:
+          '0 1px 3px 0 rgba(58, 53, 42, 0.08), 0 1px 2px -1px rgba(58, 53, 42, 0.06)',
+        md: '0 4px 6px -1px rgba(58, 53, 42, 0.08), 0 2px 4px -2px rgba(58, 53, 42, 0.06)',
+        lg: '0 10px 15px -3px rgba(58, 53, 42, 0.08), 0 4px 6px -4px rgba(58, 53, 42, 0.06)',
+      },
+      spacing: {
+        18: '4.5rem',
+        22: '5.5rem',
+      },
+    },
+  },
+  plugins: [],
+};
