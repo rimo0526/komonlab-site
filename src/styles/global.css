@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #faf7f0;
+    --color-sumi: #1a1814;
+    --color-indigo: #314466;
+    --color-accent: #a64f43;
+  }
+
+  html {
+    background-color: var(--color-ivory);
+    color: var(--color-sumi);
+    font-feature-settings: 'kern', 'liga', 'calt';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif text-sumi;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus ring — WCAG AA */
+  :focus-visible {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-indigo-700 px-5 py-3 text-base font-medium text-ivory transition-colors hover:bg-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-ink-300 bg-transparent px-5 py-3 text-base font-medium text-ink-700 transition-colors hover:border-ink-500 hover:bg-ink-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory;
+  }
+  .container-readable {
+    @apply mx-auto w-full max-w-readable px-5 sm:px-6 lg:px-8;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.18em] text-ink-500;
+  }
+  .prose-komon {
+    @apply max-w-prose text-ink-700 leading-relaxed;
+  }
+  .prose-komon h2 {
+    @apply mt-12 mb-4 text-2xl font-serif text-sumi;
+  }
+  .prose-komon h3 {
+    @apply mt-8 mb-3 text-xl font-serif text-sumi;
+  }
+  .prose-komon p {
+    @apply my-4;
+  }
+  .prose-komon a {
+    @apply text-indigo-700 underline underline-offset-4 decoration-indigo-300 hover:decoration-indigo-600;
+  }
+  .prose-komon ul {
+    @apply my-4 ml-5 list-disc;
+  }
+  .prose-komon ol {
+    @apply my-4 ml-5 list-decimal;
+  }
+  .prose-komon li {
+    @apply my-1;
+  }
+  .prose-komon blockquote {
+    @apply my-6 border-l-2 border-ink-300 pl-4 italic text-ink-500;
+  }
+  .prose-komon code {
+    @apply rounded bg-ink-100 px-1 py-0.5 font-mono text-sm text-ink-700;
+  }
+}
