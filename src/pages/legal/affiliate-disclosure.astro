@@ -1,0 +1,158 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'Affiliate Disclosure — Komon Lab';
+const description = 'How Komon Lab is supported, and what affiliate links mean for you as a reader.';
+const pubDate = new Date('2026-05-29');
+const updateDate = new Date('2026-05-29');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/legal/affiliate-disclosure/"
+  ogType="article"
+>
+  <article class="mx-auto max-w-prose px-6 py-16">
+    <header class="mb-12 border-b border-neutral-200 pb-8">
+      <p class="text-sm uppercase tracking-wide text-primary-700 mb-2">Legal</p>
+      <h1 class="font-display text-4xl md:text-5xl text-neutral-800 mb-4">
+        Affiliate Disclosure
+      </h1>
+      <p class="text-sm text-neutral-500">
+        Effective {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        {updateDate.getTime() !== pubDate.getTime() && ` · Last updated ${updateDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}
+      </p>
+    </header>
+
+    <div class="kl-prose">
+      <h2>Plain English</h2>
+      <p>
+        Some of the links on Komon Lab — particularly in our guides and tool pages —
+        are <strong>affiliate links</strong>. When you click one and buy something,
+        we may earn a small commission at no additional cost to you. That commission
+        helps keep this site free, with no email walls, no paywalls, and no ads on
+        the pattern generator itself.
+      </p>
+
+      <h2>Where you'll see affiliate links</h2>
+      <ul>
+        <li>
+          <strong>Guides</strong>: When we recommend a specific tool, fabric, or
+          book in a guide, the link to where you can buy it is usually an affiliate
+          link. We disclose this in the guide header as well.
+        </li>
+        <li>
+          <strong>Pattern generator</strong>: We do <em>not</em> place affiliate
+          links inside the generator interface itself. We may link to recommended
+          materials in the post-download section, separately marked.
+        </li>
+        <li>
+          <strong>Sidebars and contextual recommendations</strong>: Where we
+          mention a product, the link is affiliate unless explicitly marked
+          otherwise.
+        </li>
+      </ul>
+
+      <h2>Programs we participate in</h2>
+      <p>
+        Komon Lab participates in the following affiliate programs. Specific
+        program memberships may change as we apply, are approved, or remove a
+        partner that no longer fits our standards:
+      </p>
+      <ul>
+        <li>
+          <strong>Amazon Associates Program</strong> (US, UK, JP marketplaces).
+          As an Amazon Associate, we earn from qualifying purchases.
+        </li>
+        <li>
+          <strong>Etsy Affiliate Program</strong> (via Rakuten Advertising).
+          For traditional and artisan-made materials.
+        </li>
+        <li>
+          <strong>Bookshop.org Affiliate Program</strong>. For books, supporting
+          independent bookstores.
+        </li>
+      </ul>
+      <p>
+        If we add or remove a program, we update this page within 30 days.
+      </p>
+
+      <h2>What we do not do</h2>
+      <ul>
+        <li>
+          We do <strong>not</strong> recommend products we have not personally
+          evaluated or that do not meet our standards for the topic at hand.
+        </li>
+        <li>
+          We do <strong>not</strong> let affiliate commission decide what appears
+          in a guide. The editorial pick comes first; the link is added only after
+          the recommendation is made on its own merits.
+        </li>
+        <li>
+          We do <strong>not</strong> use scraped, AI-generated, or copy-pasted
+          product reviews. Every recommendation is written by hand, with
+          first-person reasoning.
+        </li>
+        <li>
+          We do <strong>not</strong> share any personal information you give us
+          (none of which is required to use the pattern generator) with any
+          affiliate program. See our <a href="/privacy/">Privacy Policy</a>.
+        </li>
+      </ul>
+
+      <h2>Reader regulation context</h2>
+      <p>
+        This disclosure is published in accordance with:
+      </p>
+      <ul>
+        <li>
+          <strong>United States</strong>: Federal Trade Commission (FTC)
+          Endorsement Guides (16 CFR Part 255) requiring clear and conspicuous
+          disclosure of material connections.
+        </li>
+        <li>
+          <strong>European Union / United Kingdom</strong>: Unfair Commercial
+          Practices Directive (UCPD) and equivalent national consumer protection
+          laws requiring disclosure of commercial intent.
+        </li>
+        <li>
+          <strong>Japan</strong>: 景品表示法 (Act against Unjustifiable Premiums
+          and Misleading Representations) and ステマ規制 (stealth marketing
+          regulation effective Oct 2023) requiring affiliate / advertorial
+          relationships to be clearly labelled.
+        </li>
+      </ul>
+      <p>
+        Where a specific guide is sponsored content (not affiliate), we mark it
+        as <strong>"Sponsored"</strong> in the guide header. Komon Lab does not
+        currently accept sponsored content.
+      </p>
+
+      <h2>How to support without affiliate links</h2>
+      <p>
+        You can support Komon Lab without buying through our links by:
+      </p>
+      <ul>
+        <li>Sharing a guide or the generator with someone learning to sew</li>
+        <li>Linking to a guide from your own site or community</li>
+        <li>Sending us corrections, additions, or photographs of your finished work</li>
+      </ul>
+
+      <h2>Questions or concerns</h2>
+      <p>
+        If you have questions about a specific recommendation or want to know
+        whether a link is affiliate, please get in touch through the contact
+        channel listed on the <a href="/about/">About page</a>.
+      </p>
+
+      <hr />
+
+      <p class="text-sm text-neutral-500">
+        <strong>Short version:</strong> some links earn us a small commission.
+        We recommend things on merit, not on commission. We don't sell your data.
+        If a guide is sponsored, it'll say so up top.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
