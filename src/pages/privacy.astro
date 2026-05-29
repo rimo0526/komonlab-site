@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const title = 'Privacy';
+const description =
+  'Komon Lab does not collect personal data. Your measurements stay in your browser. Analytics are cookieless and identifier-free.';
+
+const today = new Date();
+const updated = `${today.toLocaleString('en-US', { month: 'long' })} ${today.getFullYear()}`;
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/privacy"
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Privacy', path: '/privacy' },
+  ]}
+>
+  <section class="py-16">
+    <div class="container-readable">
+      <SectionHeading
+        eyebrow="Privacy"
+        title="What we know about you (almost nothing)."
+        lede={`Last updated ${updated}.`}
+      />
+
+      <div class="prose-komon mt-10">
+        <h2>The short version</h2>
+        <p>
+          Komon Lab does not collect personal information, does not run advertising trackers, and
+          does not use cookies for identification. Your measurements never leave your browser.
+        </p>
+
+        <h2>What we don’t collect</h2>
+        <ul>
+          <li>Email addresses. There is no newsletter and no sign-up form.</li>
+          <li>Names, profiles, or accounts. There is no account system.</li>
+          <li>Your body measurements. They are kept in your browser’s memory only.</li>
+          <li>IP addresses tied to behaviour. Analytics aggregates pageviews without identifying you.</li>
+        </ul>
+
+        <h2>How the pattern tool handles your measurements</h2>
+        <p>
+          The pattern generator runs entirely in your browser. When you click <strong>Generate
+          PDF</strong>, the calculation library and pdf-lib build the document on your device. The
+          PDF is then handed to your browser as a download. No measurement value, no derived
+          dimension, no generated PDF, and no fragment of either is sent to a Komon Lab server,
+          because no Komon Lab server is involved in the calculation. The site is statically
+          hosted; the static host sees only standard request logs.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          We use <a href="https://umami.is" rel="noopener noreferrer">Umami</a>, a privacy-friendly,
+          cookieless web analytics tool. Umami records aggregate pageviews — what page was viewed,
+          a coarse country, the referring site — without storing cookies or personal identifiers.
+          Per the <a href="https://umami.is/docs/faq" rel="noopener noreferrer">Umami project</a>,
+          it does not use fingerprinting and the site is compliant with GDPR and similar
+          regulations. If your browser sends a <code>Do Not Track</code> header, our integration
+          honours it.
+        </p>
+
+        <h2>Hosting and logs</h2>
+        <p>
+          The site is hosted on Cloudflare Pages. Cloudflare keeps standard access logs (IP,
+          timestamp, requested URL) for security and abuse-prevention purposes, per
+          <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">their
+          privacy policy</a>. We do not access these logs for analytics.
+        </p>
+
+        <h2>What we will tell you if anything changes</h2>
+        <p>
+          If Komon Lab ever adds something that touches your data — for example, an opt-in
+          newsletter, or affiliate links on the guides — that change will be announced on this
+          page and the “Last updated” date at the top will reflect it. There will never be
+          surprise tracking added quietly.
+        </p>
+
+        <h2>Contact</h2>
+        {contactEmail ? (
+          <p>Privacy questions: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+        ) : (
+          <p>A public contact channel is being decided. Until then, hold onto privacy questions and they will be answered as soon as one is open.</p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

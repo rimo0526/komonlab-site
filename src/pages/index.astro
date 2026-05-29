@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Custom kimono patterns, sized for you.';
+const description =
+  'Free, printable PDF kimono patterns generated from your measurements. Built for traditional and modern fabric widths. No sign-up.';
+
+// Pull up to three published guides for the "From the guides" rail.
+const guides = (await getCollection('guides', ({ data }) => !data.draft))
+  .sort((a, b) => +new Date(b.data.published) - +new Date(a.data.published))
+  .slice(0, 3);
+
+const ldHome = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Komon Lab',
+  url: 'https://komonlab.com/',
+  description,
+  isPartOf: { '@type': 'WebSite', name: 'Komon Lab', url: 'https://komonlab.com' },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/"
+  jsonLd={ldHome}
+>
+  <Hero
+    eyebrow="For English-speaking kimono sewers"
+    title="Custom kimono patterns, sized for you."
+    lede="Free, printable PDF patterns generated from your measurements. Built for traditional and modern fabric widths. No sign-up, no email wall, no upsell."
+    primaryCta={{ href: '/tool', label: 'Generate your pattern' }}
+    secondaryCta={{ href: '/guides', label: 'Read the guides' }}
+    image="/hero-landing.png"
+    imageAlt="A folded length of indigo-dyed cotton beside a measuring tape and brass shears."
+  />
+
+  <!-- Why this exists -->
+  <section class="border-b border-ink-200 py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Why this exists"
+        title="The kimono sewing community deserves better tools in English."
+        lede="Most English-language kimono patterns are sized to a single 'standard.' But you're not a standard — and modern Western fabric isn't 38 cm wide. This site fixes both."
+      />
+
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        <article class="rounded-lg border border-ink-200 bg-white/60 p-6">
+          <p class="font-mono text-xs text-indigo-700">01 / fit</p>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Built around your body, not a size chart.</h3>
+          <p class="mt-3 text-ink-600">
+            The tool takes seven measurements and recomputes every pattern piece — body panel, sleeve,
+            collar, overlap — using the proportional rules of traditional <em>wasai</em>. Nothing is
+            graded from a fictional Misses 12.
+          </p>
+        </article>
+
+        <article class="rounded-lg border border-ink-200 bg-white/60 p-6">
+          <p class="font-mono text-xs text-indigo-700">02 / fabric</p>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Works with the fabric you can actually buy.</h3>
+          <p class="mt-3 text-ink-600">
+            Traditional <em>tan-mono</em> bolts are 35–38 cm wide. Most fabric in a Western store is
+            110 cm or wider. The cut chart reorients pieces, splits where it has to, and tells you
+            exactly how much yardage to buy.
+          </p>
+        </article>
+
+        <article class="rounded-lg border border-ink-200 bg-white/60 p-6">
+          <p class="font-mono text-xs text-indigo-700">03 / honest</p>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Free, with no wall in front of it.</h3>
+          <p class="mt-3 text-ink-600">
+            No sign-up. No email capture. No "premium tier." Your measurements never leave your
+            browser — the PDF is generated on your device. If this site ever runs ads, they will be
+            small, unobtrusive, and labelled.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="border-b border-ink-200 bg-ink-50 py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="How it works"
+        title="Three steps, about ten minutes."
+      />
+
+      <ol class="mt-12 grid gap-8 md:grid-cols-3">
+        <li class="relative rounded-lg border border-ink-200 bg-ivory p-6">
+          <div class="absolute -top-4 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-700 font-mono text-sm text-ivory">1</div>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Measure</h3>
+          <p class="mt-2 text-ink-600">
+            Take seven measurements with a soft tape — height, bust, waist, hip, shoulder, sleeve,
+            and desired hem length. Our measuring guide walks through each one.
+          </p>
+        </li>
+        <li class="relative rounded-lg border border-ink-200 bg-ivory p-6">
+          <div class="absolute -top-4 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-700 font-mono text-sm text-ivory">2</div>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Customize</h3>
+          <p class="mt-2 text-ink-600">
+            Enter your measurements, pick your fabric width and seam allowance, choose a garment
+            style. The tool draws each piece and runs sanity checks on the proportions.
+          </p>
+        </li>
+        <li class="relative rounded-lg border border-ink-200 bg-ivory p-6">
+          <div class="absolute -top-4 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-700 font-mono text-sm text-ivory">3</div>
+          <h3 class="mt-3 font-serif text-xl text-sumi">Download PDF</h3>
+          <p class="mt-2 text-ink-600">
+            Get a print-ready PDF (A4 or US Letter) with the pattern pieces at true size, a cut
+            chart, and step-by-step sewing instructions written for first-time kimono sewers.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="border-b border-ink-200 py-20">
+    <div class="container-wide grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHeading
+          eyebrow="What you get"
+          title="A pattern set you can actually sew from."
+          lede="Not a sketch, not a one-page diagram. A full booklet, ready to print on a home printer."
+        />
+
+        <ul class="mt-8 space-y-4 text-ink-700">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none rounded-full bg-indigo-500"></span><span><strong>Measurement summary.</strong> Every input plus the derived dimensions, so you can sanity-check before you cut.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none rounded-full bg-indigo-500"></span><span><strong>Pattern pieces at true size.</strong> Tiled across A4 or US Letter with alignment marks. Each piece is labelled in English and (where it helps) Japanese.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none rounded-full bg-indigo-500"></span><span><strong>Cut chart for your fabric.</strong> Different layout for 38 cm bolts vs. 110 cm modern goods. Yardage estimate included.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none rounded-full bg-indigo-500"></span><span><strong>Sewing instructions.</strong> Plain-language, sequenced, with notes on where traditional <em>wasai</em> technique diverges from Western dressmaking.</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-lg border border-ink-200 bg-white/70 p-6 shadow-sm">
+        <p class="eyebrow">Sample PDF preview</p>
+        <div class="mt-4 grid grid-cols-3 gap-3">
+          {[
+            { n: 'p.1', label: 'Summary' },
+            { n: 'p.2', label: 'Body' },
+            { n: 'p.3', label: 'Sleeve' },
+            { n: 'p.4', label: 'Collar' },
+            { n: 'p.5', label: 'Cut chart' },
+            { n: 'p.6', label: 'Instructions' },
+          ].map((page) => (
+            <div class="aspect-[1/1.41] rounded border border-ink-200 bg-ivory flex flex-col">
+              <div class="flex-1 m-2 border border-dashed border-ink-300"></div>
+              <p class="px-2 pb-2 text-[10px] uppercase tracking-wider text-ink-400">{page.n} {page.label}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-4 text-xs text-ink-500">Mock preview. Actual PDF rendered live in your browser.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="border-b border-ink-200 bg-ink-50 py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Who this is for"
+        title="If you've ever felt like kimono sewing resources weren't quite written for you — they probably weren't."
+      />
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded-lg border border-ink-200 bg-ivory p-6">
+          <h3 class="font-serif text-lg text-sumi">A first-time kimono sewer</h3>
+          <p class="mt-2 text-ink-600">
+            You sew, but you've never made a kimono. The construction is so different from Western
+            patterns that the existing guides feel like they're missing five steps. This site fills
+            them in.
+          </p>
+        </div>
+        <div class="rounded-lg border border-ink-200 bg-ivory p-6">
+          <h3 class="font-serif text-lg text-sumi">A costume or theatre maker</h3>
+          <p class="mt-2 text-ink-600">
+            You need a kimono in three weeks, out of whatever 145 cm fabric you can source, on a
+            non-standard body. You want a pattern that respects the structure but bends on width.
+          </p>
+        </div>
+        <div class="rounded-lg border border-ink-200 bg-ivory p-6">
+          <h3 class="font-serif text-lg text-sumi">A heritage learner</h3>
+          <p class="mt-2 text-ink-600">
+            You grew up around kimono — or wish you had — and want to sew one yourself, in English,
+            without a YouTube playlist that assumes you already know <em>kuke</em> from <em>hira-mitsu</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- From the guides -->
+  {guides.length > 0 && (
+    <section class="border-b border-ink-200 py-20">
+      <div class="container-wide">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="From the guides"
+            title="Background reading, written deeply."
+          />
+          <a href="/guides" class="text-sm font-medium text-indigo-700 hover:underline">All guides →</a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {guides.map((g) => (
+            <a href={`/guides/${g.slug}`} class="group rounded-lg border border-ink-200 bg-white/60 p-6 transition-colors hover:border-indigo-400">
+              <p class="font-mono text-xs uppercase tracking-wider text-ink-400">{g.data.section}</p>
+              <h3 class="mt-2 font-serif text-xl text-sumi group-hover:text-indigo-700">{g.data.title}</h3>
+              <p class="mt-3 text-sm text-ink-600">{g.data.description}</p>
+              <p class="mt-4 text-xs text-ink-400">{g.data.readingMinutes} min read</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- About / values -->
+  <section class="py-20">
+    <div class="container-readable text-center">
+      <p class="eyebrow">A note on this project</p>
+      <p class="mt-4 font-serif text-2xl text-sumi sm:text-3xl leading-snug">
+        Komon Lab is the work of one person, built in the open. No VC, no growth hacks, no email
+        lists. Just patterns that work.
+      </p>
+      <p class="mt-6 text-ink-600">
+        If a pattern fails for your body, I want to know. If a guide gets a fact wrong, I want to
+        fix it. The whole point is that the tool gets better every time it meets a real sewer.
+      </p>
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="/about" class="btn-secondary">About the project</a>
+        <a href="/tool" class="btn-primary">Try the tool</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

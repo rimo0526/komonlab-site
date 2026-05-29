@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const title = 'About';
+const description =
+  'Komon Lab is a one-person project that makes free, printable kimono patterns from your measurements. No VC, no growth hacks, no email lists.';
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL;
+const contactHandle = import.meta.env.PUBLIC_CONTACT_HANDLE;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/about"
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+  ]}
+>
+  <section class="py-16">
+    <div class="container-readable">
+      <SectionHeading
+        eyebrow="About the project"
+        title="A small workshop in public."
+      />
+
+      <div class="prose-komon mt-10">
+        <h2>What this is</h2>
+        <p>
+          Komon Lab is a single tool with a few guides around it. The tool turns seven body
+          measurements into a printable kimono pattern. The guides explain the assumptions inside
+          the tool — how to measure, what the fabric widths mean, which sewing tools are actually
+          worth owning — so you can disagree with the tool when it’s wrong.
+        </p>
+
+        <h2>Why it exists</h2>
+        <p>
+          The English-language kimono sewing internet has a strange shape. There are excellent
+          Japanese-language books, a few translated patterns, and a long tail of forum threads.
+          What there isn’t much of is a tool that takes <em>your</em> measurements and gives back
+          a pattern. Everything is graded from one fictional standard body, with two or three
+          alternative sizes on a good day.
+        </p>
+        <p>
+          That mismatch makes kimono sewing feel inaccessible to people whose proportions don’t fit
+          the chart, or who can only source 110 cm fabric. Komon Lab is a small attempt to fix
+          that — by treating the proportional rules of traditional <em>wasai</em> as a generator,
+          not a frozen size grid.
+        </p>
+
+        <h2>Who built it</h2>
+        <p>
+          One person, working in the evenings. Not a heritage tailor, not a credentialed sewing
+          instructor — a sewer who got frustrated and started writing code. The maths in the tool
+          is documented in the source so anyone with sewing experience can read it, disagree, and
+          send corrections.
+        </p>
+
+        <h2>How it stays free</h2>
+        <p>
+          The site is statically built and hosted on Cloudflare Pages, which is free at this scale.
+          The pattern PDFs are generated in your browser, which means I don’t pay for compute when
+          you make one. Analytics is Umami, which is cookieless and counts pageviews without
+          identifying you.
+        </p>
+        <p>
+          If the bills ever grow, the plan is small affiliate links on the guides — labelled, for
+          things I’d already recommend — before anything else. No paywall, no email list, no
+          “premium PDFs.”
+        </p>
+
+        <h2>How to help</h2>
+        <p>
+          Sew a kimono from the tool and tell me what failed. Photos of the fit issue help more
+          than words. If you can read Japanese sewing books and spot somewhere I’ve simplified the
+          maths in a way that breaks tradition, I want to hear about it.
+        </p>
+
+        <h2>Contact</h2>
+        {contactEmail || contactHandle ? (
+          <p>
+            {contactEmail && (
+              <>Email: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></>
+            )}
+            {contactEmail && contactHandle && <span> · </span>}
+            {contactHandle && (
+              <>Social: <code>{contactHandle}</code></>
+            )}
+          </p>
+        ) : (
+          <p>
+            A public contact channel is being decided. In the meantime, please hold onto your
+            feedback — it will be wanted as soon as one is open.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

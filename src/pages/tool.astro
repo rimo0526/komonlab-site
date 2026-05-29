@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import KimonoPatternTool from '../components/KimonoPatternTool';
+
+const title = 'Pattern tool';
+const description =
+  'Enter seven measurements and download a printable kimono pattern PDF. All maths runs in your browser; nothing is sent to a server.';
+
+const ldTool = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Komon Lab kimono pattern generator',
+  applicationCategory: 'DesignApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description,
+  url: 'https://komonlab.com/tool',
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/tool"
+  jsonLd={ldTool}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Pattern tool', path: '/tool' },
+  ]}
+>
+  <section class="border-b border-ink-200 bg-ivory py-12">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Pattern tool"
+        title="Generate your kimono pattern PDF."
+        lede="Women’s basic style. Print on A4 or US Letter. Your measurements never leave your browser."
+      />
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="container-wide">
+      <KimonoPatternTool client:load />
+    </div>
+  </section>
+
+  <section class="border-t border-ink-200 bg-ink-50 py-16">
+    <div class="container-wide grid gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="font-serif text-2xl text-sumi">How to print</h2>
+        <ol class="mt-4 list-decimal space-y-3 pl-5 text-ink-700">
+          <li>Open the downloaded PDF in your system viewer (Preview, Acrobat, or your browser).</li>
+          <li>In the print dialog, set <strong>Scale</strong> to <strong>100 % / Actual size</strong>. Do <em>not</em> use “Fit to page.”</li>
+          <li>Print page 1 first. It contains a 5 cm calibration square — measure it with a ruler before printing the rest.</li>
+          <li>Use a glue stick or low-tack tape to assemble tiled pattern pieces along the alignment marks.</li>
+        </ol>
+      </div>
+      <div>
+        <h2 class="font-serif text-2xl text-sumi">A note on what this is, and isn’t</h2>
+        <p class="mt-4 text-ink-700">
+          This is an honest first-pass pattern, computed from your measurements using traditional
+          <em> wasai </em>proportions. It will produce a sewable, recognisable kimono for most adult
+          bodies near the middle of the size distribution. It is not a substitute for a fitted
+          muslin if you have any unusual asymmetry, posture, or proportions.
+        </p>
+        <p class="mt-4 text-ink-700">
+          If the output looks wrong, it probably is. Trust your eyes — and please
+          <a href="/about" class="text-indigo-700 underline underline-offset-4">tell us what failed</a>
+          so the next version is better.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

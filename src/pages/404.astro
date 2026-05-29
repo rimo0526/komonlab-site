@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Page not found';
+const description = 'That page isn’t here, but the kimono pattern tool is.';
+---
+
+<BaseLayout title={title} description={description} path="/404" noindex>
+  <section class="flex min-h-[60vh] items-center justify-center py-20">
+    <div class="container-readable text-center">
+      <p class="eyebrow">404</p>
+      <h1 class="mt-4 font-serif text-4xl text-sumi sm:text-5xl">This page isn’t here.</h1>
+      <p class="mt-6 text-lg text-ink-600">
+        Either we moved it, or the link was wrong. The good news is the pattern tool is still
+        waiting at the address below.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-secondary">Home</a>
+        <a href="/tool" class="btn-primary">Pattern tool</a>
+        <a href="/guides" class="btn-secondary">Guides</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
