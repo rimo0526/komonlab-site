@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Guides';
+const description =
+  'Background reading on measuring, fabric, tools, and technique for English-speaking kimono sewers.';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
+  (a, b) => +new Date(b.data.published) - +new Date(a.data.published),
+);
+
+const sectionLabels: Record<string, string> = {
+  measuring: 'Measuring',
+  fabric: 'Fabric',
+  tools: 'Tools',
+  technique: 'Technique',
+  context: 'Context',
+};
+
+const ldList = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Komon Lab guides',
+  url: 'https://komonlab.com/guides',
+  description,
+  hasPart: guides.map((g) => ({
+    '@type': 'Article',
+    headline: g.data.title,
+    url: `https://komonlab.com/guides/${g.slug}`,
+    description: g.data.description,
+    datePublished: g.data.published,
+  })),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/guides"
+  jsonLd={ldList}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Guides', path: '/guides' },
+  ]}
+>
+  <section class="border-b border-ink-200 bg-ivory py-12">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Guides"
+        title="Background reading, written deeply."
+        lede="A small set of long-form essays on the assumptions the pattern tool is built on. Read them in any order."
+      />
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="container-wide">
+      <ul class="space-y-6">
+        {guides.map((g) => (
+          <li>
+            <a href={`/guides/${g.slug}`} class="block rounded-lg border border-ink-200 bg-white/60 p-6 transition-colors hover:border-indigo-400">
+              <p class="font-mono text-xs uppercase tracking-wider text-ink-400">{sectionLabels[g.data.section] ?? g.data.section}</p>
+              <h2 class="mt-2 font-serif text-2xl text-sumi">{g.data.title}</h2>
+              <p class="mt-3 max-w-prose text-ink-600">{g.data.description}</p>
+              <p class="mt-4 text-xs text-ink-400">{g.data.readingMinutes} min read · {g.data.published}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

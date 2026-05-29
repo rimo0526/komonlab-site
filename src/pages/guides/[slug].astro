@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides', ({ data }) => !data.draft);
+  return guides.map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
+}
+
+interface Props { guide: CollectionEntry<'guides'>; }
+const { guide } = Astro.props;
+const { Content } = await guide.render();
+const { data } = guide;
+
+const path = `/guides/${guide.slug}`;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: data.title,
+  description: data.description,
+  datePublished: data.published,
+  dateModified: data.updated ?? data.published,
+  inLanguage: 'en',
+  author: { '@type': 'Organization', name: 'Komon Lab' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Komon Lab',
+    logo: { '@type': 'ImageObject', url: 'https://komonlab.com/logo.png' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://komonlab.com${path}` },
+  keywords: data.tags.join(', '),
+  wordCount: data.readingMinutes * 200, // rough estimate for schema
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  path={path}
+  datePublished={data.published}
+  dateModified={data.updated}
+  articleTags={data.tags}
+  jsonLd={articleLd}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Guides', path: '/guides' },
+    { name: data.title, path },
+  ]}
+>
+  <article class="py-16">
+    <div class="container-readable">
+      <p class="eyebrow">{data.section}</p>
+      <h1 class="mt-3 font-serif text-4xl text-sumi sm:text-5xl">{data.title}</h1>
+      <p class="mt-4 text-lg text-ink-600">{data.description}</p>
+      <p class="mt-3 text-xs text-ink-400">
+        Published {data.published} · {data.readingMinutes} min read
+      </p>
+
+      <hr class="my-10 border-ink-200" />
+
+      <div class="prose-komon">
+        <Content />
+      </div>
+
+      {data.sources.length > 0 && (
+        <section class="mt-16 border-t border-ink-200 pt-8">
+          <h2 class="font-serif text-xl text-sumi">Sources and acknowledgements</h2>
+          <ul class="mt-4 space-y-3 text-sm text-ink-600">
+            {data.sources.map((s) => (
+              <li>
+                <strong class="text-ink-700">{s.label}.</strong>
+                {s.note && <span> {s.note}</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <footer class="mt-16 border-t border-ink-200 pt-8">
+        <p class="text-sm text-ink-500">
+          Found something wrong with this guide? Please <a href="/about" class="text-indigo-700 underline underline-offset-4">tell us</a>.
+        </p>
+        <div class="mt-6 flex gap-3">
+          <a href="/guides" class="btn-secondary">All guides</a>
+          <a href="/tool" class="btn-primary">Try the tool</a>
+        </div>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
